@@ -1,17 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Jacobs Landscape Poster
-% LaTeX Template
-% Version 1.0 (29/03/13)
+% Algorithm Visualization Automation
+% Poster Presentation
 %
-% Created by:
+% Template created by:
 % Computational Physics and Biophysics Group, Jacobs University
 % https://teamwork.jacobs-university.de:8443/confluence/display/CoPandBiG/LaTeX+Poster
 % 
-% Further modified by:
+% Template further modified by:
 % Nathaniel Johnston (nathaniel@njohnston.ca)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
+% 
+% Poster presentation adapted by:
+% Michael Galliers (KYDronePilot)
 %
 % License:
 % CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
@@ -24,21 +23,30 @@
 
 \documentclass[final]{beamer}
 
-\usepackage[scale=1.24]{beamerposter} % Use the beamerposter package for laying out the poster
+\usepackage[scale=1.24]{beamerposter} % Use the beamerposter package for the poster
+
+\usepackage{forest} % For rendering the decision trees
+
+\usepackage{pdfpages} % For includng pre-rendered decision trees
 
 \usetheme{confposter} % Use the confposter theme supplied with this template
 
 \setbeamercolor{block title}{fg=ngreen,bg=white} % Colors of the block titles
 \setbeamercolor{block body}{fg=black,bg=white} % Colors of the body of blocks
-\setbeamercolor{block alerted title}{fg=white,bg=dblue!70} % Colors of the highlighted block titles
-\setbeamercolor{block alerted body}{fg=black,bg=dblue!10} % Colors of the body of highlighted blocks
+% Colors of the highlighted block titles
+\setbeamercolor{block alerted title}{fg=white,bg=dblue!70}
+% Colors of the body of highlighted blocks
+\setbeamercolor{block alerted body}{fg=black,bg=dblue!10}
 % Many more colors are available for use in beamerthemeconfposter.sty
 
 %-----------------------------------------------------------
 % Define the column widths and overall poster size
-% To set effective sepwid, onecolwid and twocolwid values, first choose how many columns you want and how much separation you want between columns
-% In this template, the separation width chosen is 0.024 of the paper width and a 4-column layout
-% onecolwid should therefore be (1-(# of columns+1)*sepwid)/# of columns e.g. (1-(4+1)*0.024)/4 = 0.22
+% To set effective sepwid, onecolwid and twocolwid values, first choose how many columns
+% you want and how much separation you want between columns
+% In this template, the separation width chosen is 0.024 of the paper width and a
+% 4-column layout
+% onecolwid should therefore be (1-(# of columns+1)*sepwid)/# of columns e.g.
+% (1-(4+1)*0.024)/4 = 0.22
 % Set twocolwid to be (2*onecolwid)+sepwid = 0.464
 % Set threecolwid to be (3*onecolwid)+2*sepwid = 0.708
 
@@ -52,7 +60,12 @@
 \setlength{\onecolwid}{0.22\paperwidth} % Width of one column
 \setlength{\twocolwid}{0.464\paperwidth} % Width of two columns
 \setlength{\threecolwid}{0.708\paperwidth} % Width of three columns
-\setlength{\topmargin}{-0.5in} % Reduce the top margin size
+\setlength{\topmargin}{-0.7in} % Reduce the top margin size
+
+% Set up the column width for the three sub-columns in the middle column
+\newlength{\onecolwidmid}
+\setlength{\onecolwidmid}{0.1467\paperwidth}
+
 %-----------------------------------------------------------
 
 \usepackage{graphicx}  % Required for including images
@@ -63,7 +76,7 @@
 %	TITLE SECTION 
 %----------------------------------------------------------------------------------------
 
-\title{Automating Algorithm Operation Visualization} % Poster title
+\title{Algorithm Visualization Automation} % Poster title
 
 \author{Michael Galliers} % Author
 
@@ -74,34 +87,21 @@
 \begin{document}
 
 \addtobeamertemplate{block end}{}{\vspace*{2ex}} % White space under blocks
-\addtobeamertemplate{block alerted end}{}{\vspace*{2ex}} % White space under highlighted (alert) blocks
+% White space under highlighted (alert) blocks
+\addtobeamertemplate{block alerted end}{}{\vspace*{2ex}}
 
 \setlength{\belowcaptionskip}{2ex} % White space under figures
 \setlength\belowdisplayshortskip{2ex} % White space under equations
 
 \begin{frame}[t] % The whole poster is enclosed in one beamer frame
 
-\begin{columns}[t] % The whole poster consists of three major columns, the second of which is split into two columns twice - the [t] option aligns each column's content to the top
+% The whole poster consists of three major columns, the second of which is split into two
+% columns twice - the [t] option aligns each column's content to the top
+\begin{columns}[t]
 
 \begin{column}{\sepwid}\end{column} % Empty spacer column
 
 \begin{column}{\onecolwid} % The first column
-
-%----------------------------------------------------------------------------------------
-%	OBJECTIVES
-%----------------------------------------------------------------------------------------
-
-% \begin{alertblock}{Objectives}
-
-% Lorem ipsum dolor sit amet, consectetur, nunc tellus pulvinar tortor, commodo eleifend risus arcu sed odio:
-% \begin{itemize}
-% \item Mollis dignissim, magna augue tincidunt dolor, interdum vestibulum urna
-% \item Sed aliquet luctus lectus, eget aliquet leo ullamcorper consequat. Vivamus eros sem, iaculis ut euismod non, sollicitudin vel orci.
-% \item Nascetur ridiculus mus.  
-% \item Euismod non erat. Nam ultricies pellentesque nunc, ultrices volutpat nisl ultrices a.
-% \end{itemize}
-
-% \end{alertblock}
 
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
@@ -109,18 +109,47 @@
 
 \begin{block}{Introduction}
 
-Computer algorithms are the basis for how we tell computers how to solve problems. Algorithms describe the series of steps a program must take to complete a certain task. This includes checking for certain conditions and performing actions based on those conditions. When designing computer algorithms, having the ability to visualize how they operate can be extremely valuable. Visualization can allow one to see why an algorithm behaves in a particular manner when given a specific input. Visualization can also show the overall efficiency of an algorithm, giving designers ideas of things that could be changed to improve this efficiency. Having the ability to automate the visualization process can be extremely useful in algorithm development by showing designers ways in which algorithms could be changed to increase efficiency.
+Computer algorithms are the basis for how computers how to solve problems. Algorithms describe the
+series of steps a program must take to complete a certain task. This includes checking conditions
+and performing actions based on those conditions. Having the ability to visualize how algorithms
+operate while designing them can be extremely valuable. Visualization can explain an algorithm's
+behavior when given a specific input and show the algorithm’s efficiency. Having the ability to
+automate the visualization process can be extremely useful in algorithm development by showing
+designers ways in which algorithms could be changed to increase efficiency.
 
 \end{block}
 
-%------------------------------------------------
-% Example Figure
-%------------------------------------------------
+%----------------------------------------------------------------------------------------
+%	SORTING ALGORITHMS
+%----------------------------------------------------------------------------------------
 
-% \begin{figure}
-% \includegraphics[width=0.8\linewidth]{placeholder.jpg}
-% \caption{Figure caption}
-% \end{figure}
+\begin{block}{Sorting Algorithms}
+
+One of the most studied problems in computer science is sorting. There are many different types of
+sorting algorithms that have been developed and each has its advantages and disadvantages. Bubble
+Sort is one of the most basic. It works by comparing the first 2 elements in a list and swapping
+them if the first is greater than the second. This repeats with the second and third elements and
+continues until the greatest element is ``bubbled'' to the last position. The entire process is
+repeated to ``bubble'' the second greatest element to be behind the greatest, and so on until the
+list is sorted.
+
+\end{block}
+
+%----------------------------------------------------------------------------------------
+%	DECISION TREES
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Decision Trees}
+
+In algorithm analysis, a pruned decision tree is a tree-like structure that describes all possible
+execution paths the program could take, depending on the input, with any contradictory paths
+``pruned'' (removed). This decision tree is valid if there is a path from the root node to a leaf
+node that sorts any permutation of an some $n$ length list \cite{neapolitan:2015}. Once generated, a
+pruned-valid decision tree can be interpreted as the different execution paths a program could take
+and the efficiency of each path. The fewer the nodes in a path from the root to a leaf node, the
+less comparisons performed, and the more efficient the algorithm.
+
+\end{block}
 
 %----------------------------------------------------------------------------------------
 
@@ -130,77 +159,14 @@ Computer algorithms are the basis for how we tell computers how to solve problem
 
 \begin{column}{\twocolwid} % Begin a column which is two columns wide (column 2)
 
-% \begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column
-
-% \begin{column}{\onecolwid}\vspace{-.6in} % The first column within column 2 (column 2.1)
-
-% %----------------------------------------------------------------------------------------
-% %	MATERIALS
-% %----------------------------------------------------------------------------------------
-
-% \begin{block}{Materials}
-
-% The following materials were required to complete the research:
-
-% \begin{itemize}
-% \item Curabitur pellentesque dignissim
-% \item Eu facilisis est tempus quis
-% \item Duis porta consequat lorem
-% \item Eu facilisis est tempus quis
-% \end{itemize}
-
-% The materials were prepared according to the steps outlined below:
-
-% \begin{enumerate}
-% \item Curabitur pellentesque dignissim
-% \item Eu facilisis est tempus quis
-% \item Duis porta consequat lorem
-% \item Curabitur pellentesque dignissim
-% \end{enumerate}
-
-% \end{block}
-
-% %----------------------------------------------------------------------------------------
-
-% \end{column} % End of column 2.1
-
-% \begin{column}{\onecolwid}\vspace{-.6in} % The second column within column 2 (column 2.2)
-
-% %----------------------------------------------------------------------------------------
-% %	METHODS
-% %----------------------------------------------------------------------------------------
-
-% \begin{block}{Methods}
-
-% Lorem ipsum dolor \textbf{sit amet}, consectetur adipiscing elit. Sed laoreet accumsan mattis. Integer sapien tellus, auctor ac blandit eget, sollicitudin vitae lorem. Praesent dictum tempor pulvinar. Suspendisse potenti. Sed tincidunt varius ipsum, et porta nulla suscipit et. Etiam congue bibendum felis, ac dictum augue cursus a. \textbf{Donec} magna eros, iaculis sit amet placerat quis, laoreet id est. In ut orci purus, interdum ornare nibh. Pellentesque pulvinar, nibh ac malesuada accumsan, urna nunc convallis tortor, ac vehicula nulla tellus eget nulla. Nullam lectus tortor, \textit{consequat tempor hendrerit} quis, vestibulum in diam. Maecenas sed diam augue.
-
-% \end{block}
-
-% %----------------------------------------------------------------------------------------
-
-% \end{column} % End of column 2.2
-
-% \end{columns} % End of the split of column 2 - any content after this will now take up 2 columns width
-
-%----------------------------------------------------------------------------------------
-%	IMPORTANT RESULT
-%----------------------------------------------------------------------------------------
-
-% \begin{alertblock}{Important Result}
-
-% Lorem ipsum dolor \textbf{sit amet}, consectetur adipiscing elit. Sed commodo molestie porta. Sed ultrices scelerisque sapien ac commodo. Donec ut volutpat elit.
-
-% \end{alertblock}
-
-%----------------------------------------------------------------------------------------
-
 %----------------------------------------------------------------------------------------
 %	BUBBLE SORT TREE
 %----------------------------------------------------------------------------------------
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{figures/bubble_sort_4_elements.png}
-\caption{Bubble Sort on [$a$, $b$, $c$, $d$]}
+% \includegraphics[width=0.8\linewidth]{figures/bubble_sort_4_elements.png}
+\resizebox{0.4\linewidth}{!}{\input{trees/bubble_sort_3_elements.tex}}
+\caption{Bubble Sort on [$a$, $b$, $c$] - an inefficient sorting algorithm}
 \end{figure}
 
 %----------------------------------------------------------------------------------------
@@ -210,82 +176,62 @@ Computer algorithms are the basis for how we tell computers how to solve problem
 %----------------------------------------------------------------------------------------
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{figures/insertion_sort_4_elements.png}
-\caption{Insertion Sort on [$a$, $b$, $c$, $d$]}
+% \includegraphics[width=0.8\linewidth]{figures/insertion_sort_4_elements.png}
+\resizebox{0.9\linewidth}{!}{\input{trees/insertion_sort_4_elements.tex}}
+\caption{Insertion Sort on [$a$, $b$, $c$, $d$] - a more efficient sorting algorithm}
 \end{figure}
 
 %----------------------------------------------------------------------------------------
 
 \begin{columns}[t,totalwidth=\twocolwid] % Split up the two columns wide column again
 
-\begin{column}{\onecolwid} % The first column within column 2 (column 2.1)
+\begin{column}{\onecolwidmid} % The first column within column 2 (column 2.1)
 
 %----------------------------------------------------------------------------------------
-%	MATHEMATICAL SECTION
+%	ANALYZER STEP 1
 %----------------------------------------------------------------------------------------
 
-\begin{block}{Mathematical Section}
-
-Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin. Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin.
-  
-\begin{equation}
-E = mc^{2}
-\label{eqn:Einstein}
-\end{equation}
-
-Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin. Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin.
-
-\begin{equation}
-\cos^3 \theta =\frac{1}{4}\cos\theta+\frac{3}{4}\cos 3\theta
-\label{eq:refname}
-\end{equation}
-
-Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin. Nam quis odio enim, in molestie libero. Vivamus cursus mi at nulla elementum sollicitudin.
-
-\begin{equation}
-\kappa =\frac{\xi}{E_{\mathrm{max}}} %\mathbb{ZNR}
-\end{equation}
-
-\end{block}
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{figures/bubble_sort_step_1_formatted.png}
+\caption{Analyzer Step 1 - Initial Traversal}
+\label{analyzer:1}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 
 \end{column} % End of column 2.1
 
-\begin{column}{\onecolwid} % The second column within column 2 (column 2.2)
+\begin{column}{\onecolwidmid} % The second column within column 2 (column 2.2)
 
 %----------------------------------------------------------------------------------------
-%	RESULTS
+%	ANALYZER STEP 2
 %----------------------------------------------------------------------------------------
-
-\begin{block}{Results}
 
 \begin{figure}
-\includegraphics[width=0.8\linewidth]{placeholder.jpg}
-\caption{Figure caption}
+\includegraphics[width=0.8\linewidth]{figures/bubble_sort_step_2_formatted.png}
+\caption{Analyzer Step 2 - Restoration Process}
+\label{analyzer:2}
 \end{figure}
-
-Nunc tempus venenatis facilisis. Curabitur suscipit consequat eros non porttitor. Sed a massa dolor, id ornare enim:
-
-\begin{table}
-\vspace{2ex}
-\begin{tabular}{l l l}
-\toprule
-\textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
-\midrule
-Treatment 1 & 0.0003262 & 0.562 \\
-Treatment 2 & 0.0015681 & 0.910 \\
-Treatment 3 & 0.0009271 & 0.296 \\
-\bottomrule
-\end{tabular}
-\caption{Table caption}
-\end{table}
-
-\end{block}
 
 %----------------------------------------------------------------------------------------
 
 \end{column} % End of column 2.2
+
+\begin{column}{\onecolwidmid} % The third column within column 2 (column 2.3)
+
+%----------------------------------------------------------------------------------------
+%	ANALYZER STEP 3
+%----------------------------------------------------------------------------------------
+
+\begin{figure}
+\includegraphics[width=0.8\linewidth]{figures/bubble_sort_step_3_formatted.png}
+\caption{Analyzer Step 3 - Branching Right}
+\label{analyzer:3}
+\end{figure}
+
+%----------------------------------------------------------------------------------------
+
+\end{column} % End of column 2.3
 
 \end{columns} % End of the split of column 2
 
@@ -296,27 +242,50 @@ Treatment 3 & 0.0009271 & 0.296 \\
 \begin{column}{\onecolwid} % The third column
 
 %----------------------------------------------------------------------------------------
+%	DECISION TREE GENERATOR
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Decision Tree Generator}
+
+To solve these problems, I designed an automatic analysis algorithm, the \textit{Decision Tree
+Generator}. This program takes a modified version of any sorting algorithm and generates a pruned-
+valid decision tree for some arbitrary input variables. To build the tree, the generator must run
+the sorting algorithm through various situations and track how the algorithm operates.
+
+\end{block}
+
+%----------------------------------------------------------------------------------------
+%	GENERATOR FUNCTIONALITY
+%----------------------------------------------------------------------------------------
+
+\begin{block}{Generator Functionality}
+
+Below is a description of one key functionality of the generator: state restoration.
+
+\begin{enumerate}
+\item For each comparison of records, the generator takes the comparison and decision made and
+	pushes them to the state stack. In this case, the generator always chooses the decision to be
+	false. Figure \ref{analyzer:1}
+\item Once the algorithm stops running, the generator must restore its execution state to the last
+	\textit{true} decision made. It does this by pulling the prior decisions out of the state stack
+	and places them in a restoration queue. Every time a comparison is made, the next queue entry is
+	dequeued and used as the next decision until empty. Figure \ref{analyzer:2}
+\item The generator then makes the \textit{false} decision at that node, branching right. The
+	process repeats until the whole tree is traversed. Figure \ref{analyzer:3}
+\end{enumerate}
+
+\end{block}
+
+
+%----------------------------------------------------------------------------------------
 %	CONCLUSION
 %----------------------------------------------------------------------------------------
 
 \begin{block}{Conclusion}
 
-Nunc tempus venenatis facilisis. \textbf{Curabitur suscipit} consequat eros non porttitor. Sed a massa dolor, id ornare enim. Fusce quis massa dictum tortor \textbf{tincidunt mattis}. Donec quam est, lobortis quis pretium at, laoreet scelerisque lacus. Nam quis odio enim, in molestie libero. Vivamus cursus mi at \textit{nulla elementum sollicitudin}.
-
-\end{block}
-
-%----------------------------------------------------------------------------------------
-%	ADDITIONAL INFORMATION
-%----------------------------------------------------------------------------------------
-
-\begin{block}{Additional Information}
-
-Maecenas ultricies feugiat velit non mattis. Fusce tempus arcu id ligula varius dictum. 
-\begin{itemize}
-\item Curabitur pellentesque dignissim
-\item Eu facilisis est tempus quis
-\item Duis porta consequat lorem
-\end{itemize}
+Visual analysis is key to designing efficient algorithms. The \textit{Decision Tree Generator} is
+just the beginning of visual algorithm analysis programs that could be implemented to analyze other
+types of algorithms in many different ways.
 
 \end{block}
 
@@ -331,43 +300,6 @@ Maecenas ultricies feugiat velit non mattis. Fusce tempus arcu id ligula varius 
 \bibliography{sample}\vspace{0.75in}}
 
 \end{block}
-
-%----------------------------------------------------------------------------------------
-%	ACKNOWLEDGEMENTS
-%----------------------------------------------------------------------------------------
-
-\setbeamercolor{block title}{fg=red,bg=white} % Change the block title color
-
-\begin{block}{Acknowledgements}
-
-\small{\rmfamily{Nam mollis tristique neque eu luctus. Suspendisse rutrum congue nisi sed convallis. Aenean id neque dolor. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.}} \\
-
-\end{block}
-
-%----------------------------------------------------------------------------------------
-%	CONTACT INFORMATION
-%----------------------------------------------------------------------------------------
-
-\setbeamercolor{block alerted title}{fg=black,bg=norange} % Change the alert block title colors
-\setbeamercolor{block alerted body}{fg=black,bg=white} % Change the alert block body colors
-
-\begin{alertblock}{Contact Information}
-
-\begin{itemize}
-\item Web: \href{http://www.university.edu/smithlab}{http://www.university.edu/smithlab}
-\item Email: \href{mailto:john@smith.com}{john@smith.com}
-\item Phone: +1 (000) 111 1111
-\end{itemize}
-
-\end{alertblock}
-
-\begin{center}
-\begin{tabular}{ccc}
-\includegraphics[width=0.4\linewidth]{logo.png} & \hfill & \includegraphics[width=0.4\linewidth]{logo.png}
-\end{tabular}
-\end{center}
-
-%----------------------------------------------------------------------------------------
 
 \end{column} % End of the third column
 

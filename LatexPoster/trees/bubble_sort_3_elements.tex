@@ -1,0 +1,32 @@
+\begin{forest}
+  for tree={
+    edge label = {font=\scriptsize},
+    circle,
+    draw,
+    if n children=0{
+      rectangle, draw
+    }{}
+  }
+  [ $a > b$, edge label={node[midway,fill=white,font=\tiny] {}}
+    [ $a > c$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+      [ $b > c$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+        [ c b a, edge label={node[midway,fill=white,font=\tiny] {Yes}} ]
+        [ b c a, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+      ]
+      [ $b > a$, edge label={node[midway,fill=white,font=\tiny] {No}}
+        [ , phantom ]
+        [ b a c, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+      ]
+    ]
+    [ $b > c$, edge label={node[midway,fill=white,font=\tiny] {No}}
+      [ $a > c$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+        [ c a b, edge label={node[midway,fill=white,font=\tiny] {Yes}} ]
+        [ a c b, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+      ]
+      [ $a > b$, edge label={node[midway,fill=white,font=\tiny] {No}}
+        [ , phantom ]
+        [ a b c, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+      ]
+    ]
+  ]
+\end{forest}

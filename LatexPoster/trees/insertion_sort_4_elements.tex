@@ -1,0 +1,80 @@
+\begin{forest}
+  for tree={
+    edge label = {font=\scriptsize},
+    circle,
+    draw,
+    if n children=0{
+      rectangle, draw
+    }{}
+  }
+  [ $a > b$, edge label={node[midway,fill=white,font=\tiny] {}}
+    [ $a > c$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+      [ $b > c$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+        [ $a > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+          [ $b > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+            [ $c > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+              [ d c b a, edge label={node[midway,fill=white,font=\tiny] {Yes}} ]
+              [ c d b a, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+            ]
+            [ c b d a, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+          ]
+          [ c b a d, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+        ]
+        [ $a > d$, edge label={node[midway,fill=white,font=\tiny] {No}}
+          [ $c > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+            [ $b > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+              [ d b c a, edge label={node[midway,fill=white,font=\tiny] {Yes}} ]
+              [ b d c a, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+            ]
+            [ b c d a, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+          ]
+          [ b c a d, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+        ]
+      ]
+      [ $c > d$, edge label={node[midway,fill=white,font=\tiny] {No}}
+        [ $a > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+          [ $b > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+            [ d b a c, edge label={node[midway,fill=white,font=\tiny] {Yes}} ]
+            [ b d a c, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+          ]
+          [ b a d c, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+        ]
+        [ b a c d, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+      ]
+    ]
+    [ $b > c$, edge label={node[midway,fill=white,font=\tiny] {No}}
+      [ $a > c$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+        [ $b > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+          [ $a > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+            [ $c > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+              [ d c a b, edge label={node[midway,fill=white,font=\tiny] {Yes}} ]
+              [ c d a b, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+            ]
+            [ c a d b, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+          ]
+          [ c a b d, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+        ]
+        [ $b > d$, edge label={node[midway,fill=white,font=\tiny] {No}}
+          [ $c > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+            [ $a > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+              [ d a c b, edge label={node[midway,fill=white,font=\tiny] {Yes}} ]
+              [ a d c b, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+            ]
+            [ a c d b, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+          ]
+          [ a c b d, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+        ]
+      ]
+      [ $c > d$, edge label={node[midway,fill=white,font=\tiny] {No}}
+        [ $b > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+          [ $a > d$, edge label={node[midway,fill=white,font=\tiny] {Yes}}
+            [ d a b c, edge label={node[midway,fill=white,font=\tiny] {Yes}} ]
+            [ a d b c, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+          ]
+          [ a b d c, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+        ]
+        [ a b c d, edge label={node[midway,fill=white,font=\tiny] {No}} ]
+      ]
+    ]
+  ]
+\end{forest}
