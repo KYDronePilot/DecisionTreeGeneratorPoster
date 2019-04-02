@@ -109,13 +109,12 @@
 
 \begin{block}{Introduction}
 
-Computer algorithms are the basis for how computers how to solve problems. Algorithms describe the
-series of steps a program must take to complete a certain task. This includes checking conditions
-and performing actions based on those conditions. Having the ability to visualize how algorithms
-operate while designing them can be extremely valuable. Visualization can explain an algorithm's
-behavior when given a specific input and show the algorithm’s efficiency. Having the ability to
-automate the visualization process can be extremely useful in algorithm development by showing
-designers ways in which algorithms could be changed to increase efficiency.
+Computer algorithms are the basis for how computers solve problems. Algorithms describe the series
+of steps a program must take to complete a certain task. This includes checking conditions and
+performing actions based on those conditions. Having the ability to visualize how algorithms operate
+while designing them can be extremely valuable. Automation of the visualization process can be even
+more useful in development, quickly showing ways in which algorithms could be improved to increase
+efficiency.
 
 \end{block}
 
@@ -125,13 +124,13 @@ designers ways in which algorithms could be changed to increase efficiency.
 
 \begin{block}{Sorting Algorithms}
 
-One of the most studied problems in computer science is sorting. There are many different types of
-sorting algorithms that have been developed and each has its advantages and disadvantages. Bubble
-Sort is one of the most basic. It works by comparing the first 2 elements in a list and swapping
-them if the first is greater than the second. This repeats with the second and third elements and
-continues until the greatest element is ``bubbled'' to the last position. The entire process is
-repeated to ``bubble'' the second greatest element to be behind the greatest, and so on until the
-list is sorted.
+Sorting is a heavily studied topic in computer science. Many types of sorting algorithms have been
+developed and each has its advantages and disadvantages. \textit{\textbf{Bubble Sort}} is one of the
+most basic. It works by comparing the first 2 elements in a list and swapping them if the first is
+greater than the second. This repeats with the second and third elements and so on until the
+greatest element is \textit{bubbled} to the last position. The process is repeated to
+\textit{bubble} the second greatest element to behind the greatest, and so on until the list is
+sorted.
 
 \end{block}
 
@@ -141,13 +140,13 @@ list is sorted.
 
 \begin{block}{Decision Trees}
 
-In algorithm analysis, a pruned decision tree is a tree-like structure that describes all possible
-execution paths the program could take, depending on the input, with any contradictory paths
-``pruned'' (removed). This decision tree is valid if there is a path from the root node to a leaf
-node that sorts any permutation of an some $n$ length list \cite{neapolitan:2015}. Once generated, a
-pruned-valid decision tree can be interpreted as the different execution paths a program could take
-and the efficiency of each path. The fewer the nodes in a path from the root to a leaf node, the
-less comparisons performed, and the more efficient the algorithm.
+In algorithm analysis, a \textbf {pruned decision tree} is a tree that describes all possible
+execution paths a program can take, depending on the input, with any contradictory paths
+\textit{pruned}. For sorting algorithms, this tree is \textbf{valid} if there is a path from the
+root node to a leaf node that sorts any permutation of an inputted list \cite{neapolitan:2015}. A
+\textbf{pruned- valid decision tree} can be interpreted as the different execution paths a program
+can take and the efficiency of each path. The fewer nodes in a path from the root to a leaf node,
+the less comparisons performed, and the more efficient the algorithm.
 
 \end{block}
 
@@ -165,8 +164,8 @@ less comparisons performed, and the more efficient the algorithm.
 
 \begin{figure}
 % \includegraphics[width=0.8\linewidth]{figures/bubble_sort_4_elements.png}
-\resizebox{0.4\linewidth}{!}{\input{trees/bubble_sort_3_elements.tex}}
-\caption{Bubble Sort on [$a$, $b$, $c$] - an inefficient sorting algorithm}
+\resizebox{0.9\linewidth}{!}{\input{trees/bubble_sort_4_elements.tex}}
+\caption{Bubble Sort on [$a$, $b$, $c$, $d$] - an inefficient sorting algorithm}
 \end{figure}
 
 %----------------------------------------------------------------------------------------
@@ -247,10 +246,11 @@ less comparisons performed, and the more efficient the algorithm.
 
 \begin{block}{Decision Tree Generator}
 
-To solve these problems, I designed an automatic analysis algorithm, the \textit{Decision Tree
-Generator}. This program takes a modified version of any sorting algorithm and generates a pruned-
-valid decision tree for some arbitrary input variables. To build the tree, the generator must run
-the sorting algorithm through various situations and track how the algorithm operates.
+To solve these problems, I designed an automatic analysis code library, the \textit{\textbf{Decision
+Tree Generator}}. This library can take a modified version of any sorting algorithm and generate a
+pruned-valid decision tree for some arbitrary input variables. To build the tree, the generator must
+run the sorting algorithm through various situations, observing and controlling its comparisons of
+records.
 
 \end{block}
 
